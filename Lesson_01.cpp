@@ -21,10 +21,10 @@ int main()
      * Assignment Statement
      *
      * ( int ) - integer
-     * ( char ) - character
-     * ( string ) - collection of characters
-     * ( double ) - floating point
-     * ( bool ) - boolean, true, false
+     * ( char ) - character, enclosed in single quotation marks ' '
+     * ( string ) - collection of characters, enclosed in double quotation marks " "
+     * ( double ) - floating point decimal number
+     * ( bool ) - boolean, true, false or 0, 1 (0 = false, 1 = true)
      *
      * variables are storage locations in the computer's memory
      * literals are constant values that are assigned to variables
