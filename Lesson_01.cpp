@@ -1,8 +1,8 @@
 #include <iostream>
 
 /*
- * Lesson 01
- * ---------
+ *        Lesson 01
+ * -------------------------
  * 1. comments
  * 2. preprocessor directive
  * 3. int main() { }
@@ -91,7 +91,9 @@ int main()
     //modulus - (bigNumber % littleNumber)
     int modulusEx = maxEnergy % usedRun;
 
-    std::cout << "Example: " << modulusEx << " is the remainder\n";
+    std::cout
+        << "Example: " << modulusEx << " is the remainder of "
+        << maxEnergy << ' % ' << usedRun << '\n';
 
 }
 
