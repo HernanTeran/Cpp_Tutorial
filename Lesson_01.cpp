@@ -1,118 +1,122 @@
-// # - preprocessor directive. This sets up the source code for the compiler
-// #include - includes the contents of a header file
-// <iostream> - wrapped in enclosed brackets, names of the files, allows input and output (input/output library)
-// using namespace std; - gives access to the entities of the Standard Library
-// C++ is case sensitive
-
 #include <iostream>
-#include <string>
 
-void ranOut();
+/*
+ * Lesson 01
+ * ---------
+ * 1. comments
+ * 2. preprocessor directive
+ * 3. int main() { }
+ * 4. data types
+ * 5. variables
+ * 6. functions
+ * 7. scope
+ * 8. arithmetic operators
+ * 9. outputting data
+ * 10. inputting data
+ */
 
-// a function - value/type name() { }
+//function prototypes
+void examine();
+void running(int); //only data type needs to be written in a prototype parameter
+int usedEnergy(int, int);
+void zeroEnergy();
 
 int main()
-// opening brace
 {
-    // console output : String  : end output
-    std::cout << "Running..." << std::endl; // ; include semi-colons at the end of statements
+    //variable definition
+    int goblinLvl;
 
-    /*
-     * Assignment Statement
-     *
-     * ( int ) - integer
-     * ( char ) - character, enclosed in single quotation marks ' '
-     * ( string ) - collection of characters, enclosed in double quotation marks " "
-     * ( double ) - floating point decimal number
-     * ( bool ) - boolean, true, false or 0, 1 (0 = false, 1 = true)
-     *
-     * variables are storage locations in the computer's memory
-     * literals are constant values that are assigned to variables
-     *
-     * identifies can only be written with letters, digits, or underscores
-     * identifiers can't be any of the reserved keywords
-     * make identifiers meaningful
-     * use camel case or underscores
-     *
-     * = is the assignment operator
-     *
-     * always be mindful of scope
-     *
-     * use const whenever possible if it makes sense to
-     */
+    //variable assignment
+    goblinLvl = 5;
 
-    // variable definition - type identifier (name);
-    std::string playerName;
+    //variable initialization
+    std::string goblinWeapon = "spear";
 
-    // assignment - variable name = literal (values/constants);
-    playerName = "Gamebot676";
+    //define booleans like isSomething
+    bool isDead;
 
-     /*
-      * Outputting Data
-      *
-      * cout - stream object that works with a stream of data
-      * << - stream insertion operator. Works with cout to output data
-      * endl - stream manipulator. Creates a newline
-      * newline escape sequence - can also use "\n"
-      */
+    char getInput;
 
-    // output       :            variable      :    end output;
-    std::cout << "The player " << playerName << " is running...\n";
+    //prompt
+    std::cout << "Have you ever played Runescape before? (Y or N)" << '\n';
 
-    // initialization
-    int runEnergy = 100;
+    //remember char can only hold a single character
+    std::cin >> getInput;
 
-    std::cout << playerName << " has " << runEnergy << " run energy...\n";
+    //getInput now either has the value 'Y' or 'N' assigned to it
+    std::cout << "Your input: " << getInput << '\n';
 
-    double money_pouch = 1234.56;
+    int myCbLvl, lvlDiff;
 
-    char memberStatus = 'N';
+    myCbLvl = 121;
 
-    // 0 = false, 1 = true
-    bool isRich = false;
+    lvlDiff = myCbLvl - goblinLvl;
 
-    /*
-     * Arithmetic Operators
-     *
-     * unary, binary, ternary
-     *
-     * ( + ) - addition
-     * ( - ) - subtraction
-     * ( / ) - division
-     * ( * ) - multiplication
-     * ( % ) - modulus (returns remainder... (bigNumber % littleNumber)
-     *
-     */
+    //calling functions
 
-    runEnergy = runEnergy - 23;
+    //since it's void it doesn't need to be assigned to a variable
+    examine();
 
-    money_pouch = money_pouch / 2;
+    //read only
+    const int maxEnergy = 100;
 
+    std::cout << "Enter current run energy: ";
 
-    std::cout
-    << "Player name: " << playerName << '\n'
-    << "Current run energy: " << runEnergy << '\n'
-    << "Member status: " << memberStatus << '\n'
-    << "Is rich: " << isRich << '\n'
-    << "Amount in money pouch: " << money_pouch << '\n';
+    int runEnergy;
 
-    /*
-     * Introduction to Functions
-     *
-     * returnType functionName() { code }
-     * called in main by writing out the declaration out
-     *
-     * void ranOut(); notice the semicolon
-     */
+    std::cin >> runEnergy;
 
-    ranOut();
+    //when a function uses a value the parameter value is called an argument
+    running(runEnergy);
 
-    // return returns the corresponding value back to the operating system upon the program's completion
-    return 0;
+    //usedEnergy must be assigned to int because it returns an int
+    //input arguments according to parameter order
+    int usedRun = usedEnergy(maxEnergy, runEnergy);
+
+    //if zero energy left (we'll expand on this in the next lesson)
+    zeroEnergy();
+
+    double moneyPouch;
+
+    //use ' for better readability with big numbers
+    moneyPouch = 522'435;
+
+    moneyPouch += 300'000;
+    //moneyPouch -= 150,000;
+    //moneyPouch *= 2;
+    //moneyPouch /= 2.5;
+
+    std::cout << "gp: " << moneyPouch << '\n';
+
+    //modulus - (bigNumber % littleNumber)
+    int modulusEx = maxEnergy % usedRun;
+
+    std::cout << "Example: " << modulusEx << " is the remainder\n";
+
 }
-// closing brace
 
-void ranOut()
+//function definitions
+
+void examine()
+{
+    std::cout << "An ugly green creature.\n";
+}
+
+//will output a message + the value of runEnergy
+void running(int runEnergy)
+{
+    std::cout
+    << "Running...\n"
+    << "Current run energy: " << runEnergy << '\n';
+}
+
+//returns an integer
+int usedEnergy(const int maxEnergy, int runEnergy)
+{
+    return maxEnergy - runEnergy;
+}
+
+void zeroEnergy()
 {
     std::cout << "You don't have enough energy left to run!\n";
 }
