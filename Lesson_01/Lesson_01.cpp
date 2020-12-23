@@ -280,8 +280,8 @@ void displayInput(const char playExp, const int myCbLvl, bool isAlive, const std
  *
  *    There should be a function that states you ran out of run energy.
  *
- *    There should be a function that restores your run energy by
- *    drinking a potion.
+ *    There should be a function that restores your run energy
+ *    to 100 by drinking an energy potion.
  *    ( With it, there should a be a prompt that asks whether
  *      or not your sure you want to drink the potion. Your input
  *      should be of type char. )
