@@ -271,9 +271,12 @@ void displayInput(const char playExp, const int myCbLvl, bool isAlive, const std
  *
  *    There should be a function that states your running.
  *    ( Only if your run energy is > 0 )
+ *    It should subtract 25 from your run energy (in main)
+ *    every time that you call it.
  *
  *    There should be a function that states your walking.
- *    ( It should also restore your run energy back to 100 )
+ *    ( It should also restore your run energy by 25
+ *      every time you call until it is back to 100 )
  *
  *    There should be a function that states you ran out of run energy.
  *
