@@ -79,7 +79,25 @@ int main()
 
     /********************************************/
 
-    //      ( 3 ) - bool
+    /*
+     *      ( 3 ) - bool
+     *
+     * Relational Operators
+     * --------------------
+     * ( > ) - greater than
+     * ( < ) - less than
+     * ( >= ) - greater than or equal to
+     * ( <= ) - less than or equal to
+     * ( == ) - equal to
+     * ( != ) - not equal to
+     *
+     * Logical Operators
+     * -----------------
+     * && - AND
+     * || - OR
+     * ! - NOT
+     */
+
     bool isDead;
 
     int hitPoints = 100;
@@ -119,6 +137,22 @@ int main()
     return 0;
 }
 
+/*
+ * Input / Output/ Errors
+ * ----------------------
+ * std::cout << output << '\n';
+ * 
+ * std::cin >> input;
+ * 
+ * std::cin.get(); - input for char
+ * 
+ * getline(std::cin, stringVar) - input for string
+ * 
+ * std::ignore() - use before using get/getline and after using cin
+ * 
+ * std::cerr << error message << '\n';
+ */
+
 //function definitions
 
 char playedBefore()
@@ -156,7 +190,7 @@ void damage(int& hitPoints)
     hitPoints -= damage(gen);
 }
 
-void currentHitPoints(int hitPoints)
+void currentHitPoints(const int hitPoints)
 {
     std::cout << "Current HP: " << hitPoints << '\n';
 }
@@ -164,12 +198,12 @@ void currentHitPoints(int hitPoints)
 bool isAlive(int hitPoints)
 {
     //if true
-    if (hitPoints > 0)
+    if (hitPoints > 0 && hitPoints < 100)
     {
         //do this
         return true;
     }
-    //if false
+        //if false
     else
     {
         //do this (depends on return type)
@@ -196,13 +230,21 @@ void heal(const std::string& foodItem, int& hitPoints)
 {
     int health;
 
+    /*
+     * ( == ) is not the same as ( = )
+     *
+     * == represents equality by comparison
+     *
+     * = is the assignment operator
+     */
+
     if (foodItem == "lobster")
     {
         health = 20;
         hitPoints += health;
         hitPoints = regulateHealth(hitPoints);
     }
-    //another if statement
+        //another if statement
     else if (foodItem == "shrimp")
     {
         health = 10;
@@ -230,12 +272,12 @@ int regulateHealth(int& HP)
 void displayInput(const char playExp, const int myCbLvl, bool isAlive, const std::string& foodItem, const int hitPoints, const double moneyPouch)
 {
     std::cout << std::setprecision(2) << std::fixed
-    << "\nPlayed RS before: " << playExp << '\n'
-    << "Combat level: " << myCbLvl << '\n'
-    << "Is alive: " << isAlive << '\n'
-    << "Food item that healed you: " << foodItem << '\n'
-    << "Current HP: " << hitPoints << '\n'
-    << "Amount in money pouch: $" << moneyPouch << '\n';
+              << "\nPlayed RS before: " << playExp << '\n'
+              << "Combat level: " << myCbLvl << '\n'
+              << "Is alive: " << isAlive << '\n'
+              << "Food item that healed you: " << foodItem << '\n'
+              << "Current HP: " << hitPoints << '\n'
+              << "Amount in money pouch: $" << moneyPouch << '\n';
 }
 
 /*
@@ -254,6 +296,7 @@ void displayInput(const char playExp, const int myCbLvl, bool isAlive, const std
  * 11. the goal is to keep code simple and readable
  * 12. pass by value with const
  * 13. pass by reference if updating the variable
+ * 14. inline potential if statements...if possible
  */
 
 /*
@@ -271,7 +314,7 @@ void displayInput(const char playExp, const int myCbLvl, bool isAlive, const std
  *    Max run is 100.
  *
  *    There should be a function that states your running.
- *    ( Only if your run energy is > 0 )
+ *    ( Only if your run energy is > 0 && < 100 )
  *    It should subtract 25 from your run energy (in main)
  *    every time that you call it.
  *
@@ -288,7 +331,7 @@ void displayInput(const char playExp, const int myCbLvl, bool isAlive, const std
  *      should be of type char. )
  *
  * 3. Create a program that asks for your login information,
- *    gets your member status, and then displays all this information.
+ *    your member status, and then displays all this information.
  *
  * 4. Create a program that updates your money pouch.
  *    You should be prompted to enter how much gp you got
@@ -300,8 +343,38 @@ void displayInput(const char playExp, const int myCbLvl, bool isAlive, const std
  *
  *    You should also create a function that withdraws
  *    from your pouch. This should result from a prompt.
- *    Display the current amount in your pouch.
+ *    If your money pouch is empty, display an error message
+ *    (using std::cerr instead of std::cout) stating that
+ *    your pouch is empty and you can't withdraw anything.
+ *
+ *    This includes keeping your pouch at 0, if empty, and
+ *    not letting it display a negative number. For example,
+ *    you have 100 coins left and you withdraw 200 coins...
+ *    it will withdraw the 100 but give you the error message
+ *    stating that you don't have enough to withdraw your
+ *    requested amount. Your pouch would equal 0 as opposed to
+ *    -100.
+ *
+ *    Display the current amount in your pouch after all
+ *    withdrawals.
  *
  *    Use int to represent your variables.
  *    Keep your pouch under 1,000,000.
+ *
+ *    5. Create a program that uses a bool variable called
+ *    isMember, it should be set to false.
+ *
+ *    Combine this with exercise #3. After you log in, you
+ *    should get a prompt asking if you would like to become a member.
+ *    If you choose yes, then it will give you a message
+ *    and update isMember to true.
+ *
+ *    If you choose no, it'll give you a message and leave
+ *    isMember as is.
+ *
+ *    After you become a member, there should be a function
+ *    that prevents you from getting prompted about
+ *    membership again by checking isMember. Instead it should
+ *    state you are already a member after you call the function
+ *    that logs you in.
  */
