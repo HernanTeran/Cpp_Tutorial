@@ -258,7 +258,9 @@ void displayInput(const char playExp, const int myCbLvl, bool isAlive, const std
 /*
  *                            Exercises
  * ------------------------------------------------------------------
- * 1. Create a program that has a void function called examine.
+ * 1. Create a program that has a void function called examine and
+ *    a const string as its parameter.
+ *
  *    Create 3 different strings to represent 3 different NPCs
  *    Use a prompt to get which NPC you currently want to examine.
  *    Then use an if/else statement to execute the NPCs respective
