@@ -16,7 +16,8 @@
  * 8. scope
  * 9. outputting data
  * 10. inputting data
- * 11. exercises
+ * 11. if/else statement
+ * 12. exercises
  */
 
 //function prototypes
