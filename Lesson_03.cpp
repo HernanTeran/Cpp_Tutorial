@@ -132,16 +132,6 @@ int main()
     return 0;
 }
 
-    /*
-     * Introduction to Working With Booleans
-     *
-     * uses if/else statement
-     * example use >, &&, and < conditional operators
-     *
-     * if - this is true/false, do this
-     * else - if it wasn't true/false, (whatever you wanted), do this
-     */
-
 // returnType name(type parameterName) { code }
 void running(int runEnergy)
 {
