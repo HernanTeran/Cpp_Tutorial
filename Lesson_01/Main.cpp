@@ -2,33 +2,21 @@
 #include <string>
 #include "Account.h"
 
+/*
+ * annotate program
+ * add exception classes for account creation - check password,DOB
+ * set display name
+ * menu to display created account with ability to change password/display name
+ */
+
 std::string getEmail();
-std::string getPassword();
-int getDay();
-int getMonth();
-int getYear();
+std::string createPassword();
+std::string getDOB();
+Account createAccount();
 
 int main()
 {
-    std::string email, password;
-
-    email = getEmail();
-    password = getPassword();
-
-    int day, month, year;
-
-    std::cout << "Enter your date of birth\n";
-
-    day = getDay();
-    month = getMonth();
-    year = getYear();
-
-    Account account(email, password, day, month, year);
-
-    if (account.isAccountCreated())
-    {
-        std::cout << "Welcome to RuneScape!\n";
-    }
+    Account account = createAccount();
 
     return 0;
 }
@@ -40,51 +28,68 @@ std::string getEmail()
     std::string email;
     getline(std::cin, email);
 
-    std::cout << "\n\n";
+    std::cout << '\n';
 
     return email;
 }
 
-std::string getPassword()
+std::string createPassword()
 {
     std::cout
     << "Create a password\n"
     << "Password must have at least 1 uppercase letter.\n"
     << "Password must have at least 1 digit.\n"
     << "Password must not contain any special characters.\n"
+    << "Password must be between 5 & 20 characters long.\n"
     << "> ";
 
     std::string password;
     getline(std::cin, password);
 
-    std::cout << "\n\n";
+    std::cout << '\n';
 
     return password;
 }
 
-int getDay()
+std::string getDOB()
 {
-    int day;
+    std::cout << "Enter your date of birth (DD/MM/YYYY): ";
+    std::string dateOfBirth;
+    getline(std::cin, dateOfBirth);
 
-    std::cin >> day;
+    std::cout << '\n';
 
-    return day;
+    return dateOfBirth;
 }
 
-int getMonth()
+Account createAccount()
 {
-    int month;
+    //account variables
+    const std::string email = getEmail(),
+                newPassword = createPassword(),
+                dateOfBirth = getDOB();
 
-    std::cin >> month;
+    //flag
+    bool accountCreated = true;
 
-    return month;
-}
+    do
+    {
+        try
+        {
+            Account account(email, newPassword, dateOfBirth);
 
-int getYear()
-{
-    int year;
+            accountCreated = true;
+        }
+        catch (Account::EmailError &emailError)
+        {
+            std::cerr
+            << "Email error: " << emailError.getErrorEmail() << '\n'
+            << "Try again: ";
 
-    std::cin >> year;
+            getline(std::cin, email);
+        }
 
-    return year;
+    } while (!accountCreated);
+
+    return account;
 }
