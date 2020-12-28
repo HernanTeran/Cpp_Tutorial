@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Account.h"
 
 /*
  * annotate program
- * add exception classes for account creation - check password,DOB
+ * add exception for account display name
  * set display name
  * menu to display created account with ability to change password/display name
  */
@@ -16,8 +17,18 @@ Account createAccount();
 
 int main()
 {
-    Account account = createAccount();
+    std::vector<Account> accounts;
 
+    try
+    {
+        Account account = createAccount();
+        accounts.emplace_back(account);
+    }
+    catch (Account::InvalidAccount)
+    {
+        std::cerr << "Invalid account information entered.\n"
+                  << "Try again.\n";
+    }
     return 0;
 }
 
@@ -66,30 +77,10 @@ Account createAccount()
 {
     //account variables
     const std::string email = getEmail(),
-                newPassword = createPassword(),
-                dateOfBirth = getDOB();
+                      newPassword = createPassword(),
+                      dateOfBirth = getDOB();
 
-    //flag
-    bool accountCreated = true;
-
-    do
-    {
-        try
-        {
-            Account account(email, newPassword, dateOfBirth);
-
-            accountCreated = true;
-        }
-        catch (Account::EmailError &emailError)
-        {
-            std::cerr
-            << "Email error: " << emailError.getErrorEmail() << '\n'
-            << "Try again: ";
-
-            getline(std::cin, email);
-        }
-
-    } while (!accountCreated);
+    Account account(email, newPassword, dateOfBirth);
 
     return account;
 }
