@@ -6,36 +6,38 @@
 class Account
 {
 private:
-    //variables
+    /* variables */
     std::string email, password, displayName, dateOfBirth;
-    bool accountCreated = false;
+
+    /* invariant */
+    bool accountCreated;
+
+    /* other */
     static int objectCount;
 
-    //private functions
+    /* private functions */
     void greeting() const;
     bool InvalidEmail();
     bool InvalidPassword();
     bool InvalidDOB();
 
 public:
-    //constructor used to create an account
+    /* constructor used to create an account */
     Account(std::string email, std::string password, std::string dateOfBirth);
 
-    //throws error if invariant isn't established
+    /* throws error if invariant isn't established */
     class InvalidAccount{};
 
-    //getters
+    /* getters */
     const std::string &getEmail() const;
     const std::string &getPassword() const;
     const std::string &getDisplayName() const;
-    const std::string &getDateOfBirth() const;
-    bool isAccountCreated() const;
 
-    //setters
+    /* setters */
     void setDisplayName(const std::string &displayName);
     void setPassword(const std::string &password);
 
-    //other
+    /* other */
     static int getObjectCount();
 
 };
