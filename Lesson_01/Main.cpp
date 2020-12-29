@@ -3,18 +3,18 @@
 #include <vector>
 #include "Account.h"
 
-//create an account
+/* create an account */
 std::string getEmail();
 std::string createPassword();
 std::string getDOB();
 Account createAccount(const std::vector<Account>&);
 std::string selectDisplayName();
 
-//check for taken emails/display names
+/* check for taken emails/display names */
 std::string validateEmail(const std::vector<Account>&, std::string&);
 std::string validateDisplayName(const std::vector<Account>&, std::string&);
 
-//menus
+/* menus */
 void mainMenu();
 bool validLogin(const std::vector<Account>&);
 void loginMenu(std::vector<Account>&);
@@ -22,9 +22,18 @@ void gameMenu();
 std::size_t getChoice();
 void logout(bool&, std::size_t&);
 
-//change display name or password
+/* change display name or password */
 void changePassword(std::vector<Account> &);
 void changeDisplayName(std::vector<Account>&);
+
+/*
+ * @main()
+ *
+ * The purpose of this program is to simulate
+ * the process of creating and managing a RuneScape account.
+ *
+ * This program is meant for only one account at this point.
+ */
 
 int main()
 {
@@ -48,7 +57,7 @@ int main()
                 {
                     Account account = createAccount(accounts);
 
-                    //account created
+                    /* account created */
                     accounts.emplace_back(account);
                 }
                 catch (Account::InvalidAccount)
@@ -61,7 +70,7 @@ int main()
                 std::cout << "Goodbye!\n";
                 break;
             default:
-                std::cerr << "Invalid choice. Try again: ";
+                std::cerr << "Invalid choice. Try again.\n";
         }
 
     } while (choice_menu1 != 3);
@@ -69,7 +78,17 @@ int main()
     return 0;
 }
 
-//create an account
+/* create an account */
+
+/*
+ * @getEmail()
+ *
+ * This function returns a string that holds an email
+ * from a new user.
+ *
+ * The value is validated by an exception class
+ * when attempting to create a new Account object.
+ */
 std::string getEmail()
 {
     std::cout << "Enter your email: ";
@@ -81,6 +100,16 @@ std::string getEmail()
 
     return email;
 }
+
+/*
+ * @createPassword()
+ *
+ * This function returns a string that holds
+ * a password from a new user.
+ *
+ * The value is validated by an exception class
+ * when attempting to create a new Account object.
+ */
 
 std::string createPassword()
 {
@@ -100,6 +129,16 @@ std::string createPassword()
     return password;
 }
 
+/*
+ * @getDOB()
+ *
+ * This function returns a string that holds
+ * the date of birth of a new user.
+ *
+ * The value is validated by an exception class
+ * when attempting to create a new Account object.
+ */
+
 std::string getDOB()
 {
     std::cout << "Enter your date of birth (DD/MM/YYYY): ";
@@ -110,6 +149,69 @@ std::string getDOB()
 
     return dateOfBirth;
 }
+
+/*
+ * @createAccount()
+ *
+ * This function creates an Account object by calling
+ * other functions to fill its constructor.
+ *
+ * It is validated by an exception class.
+ */
+
+
+Account createAccount(const std::vector<Account> &accounts)
+{
+    /* account variables */
+    std::string email = getEmail();
+    email = validateEmail(accounts, email);
+
+    const std::string newPassword = createPassword(),
+                      dateOfBirth = getDOB();
+
+    Account account(email, newPassword, dateOfBirth);
+
+    /* set display name */
+    std::string displayName = selectDisplayName();
+    displayName = validateDisplayName(accounts, displayName);
+    account.setDisplayName(displayName);
+
+    std::cout << "Display name set!\n\n";
+
+    return account;
+}
+
+/*
+ * @selectDisplayName()
+ *
+ * This function returns a string that holds
+ * the display name of a new account after
+ * an Account object has been created.
+ *
+ * It is validated by a function
+ * that throws an exception from
+ * an exception class.
+ */
+
+std::string selectDisplayName()
+{
+    std::cout << "\nChoose display name: ";
+    std::string name{};
+    getline(std::cin, name);
+
+    std::cout << '\n';
+
+    return name;
+}
+
+/*
+ * @validateEmail() & @validateDisplayName()
+ *
+ * These functions validate a string that holds an email/display name
+ * after an Account object has been created.
+ *
+ * It throws an exception if invalid.
+ */
 
 std::string validateEmail(const std::vector<Account> &accounts, std::string &email)
 {
@@ -128,27 +230,6 @@ std::string validateEmail(const std::vector<Account> &accounts, std::string &ema
         }
     }
     return email;
-}
-
-Account createAccount(const std::vector<Account> &accounts)
-{
-    //account variables
-    std::string email = getEmail();
-    email = validateEmail(accounts, email);
-
-    const std::string newPassword = createPassword(),
-                      dateOfBirth = getDOB();
-
-    Account account(email, newPassword, dateOfBirth);
-
-    //set display name
-    std::string displayName = selectDisplayName();
-    displayName = validateDisplayName(accounts, displayName);
-    account.setDisplayName(displayName);
-
-    std::cout << "Display name set!\n\n";
-
-    return account;
 }
 
 std::string validateDisplayName(const std::vector<Account>& accounts, std::string &name)
@@ -170,18 +251,15 @@ std::string validateDisplayName(const std::vector<Account>& accounts, std::strin
     return name;
 }
 
-std::string selectDisplayName()
-{
-    std::cout << "\nChoose display name: ";
-    std::string name{};
-    getline(std::cin, name);
+/* menus */
 
-    std::cout << '\n';
+/*
+ * @mainMenu()
+ *
+ * This function prints a menu that
+ * is meant for new/existing users.
+ */
 
-    return name;
-}
-
-//menus
 void mainMenu()
 {
     std::cout
@@ -191,6 +269,13 @@ void mainMenu()
     << "2. Create an account\n"
     << "3. Exit\n\n";
 }
+
+/*
+ * @validLogin()
+ *
+ * This function validates a login and is
+ * meant for existing users.
+ */
 
 bool validLogin(const std::vector<Account> &accounts)
 {
@@ -232,6 +317,13 @@ bool validLogin(const std::vector<Account> &accounts)
     return successful;
 }
 
+/*
+ * @loginMenu()
+ *
+ * This function works with the switch statement in main.
+ * It is another switch statement that provides existing user functions.
+ */
+
 void loginMenu(std::vector<Account> &accounts)
 {
     bool loggedIn = validLogin(accounts);
@@ -268,6 +360,13 @@ void loginMenu(std::vector<Account> &accounts)
     } while (choice_menu2 != 4 && loggedIn);
 }
 
+/*
+ * @gameMenu()
+ *
+ * This function prints a menu for existing users
+ * after they have logged in.
+ */
+
 void gameMenu()
 {
     std::cout
@@ -276,6 +375,13 @@ void gameMenu()
     << "3. Play\n"
     << "4. Log out\n";
 }
+
+/*
+ * @getChoice()
+ *
+ * This function returns a size_t value because the input can't be negative.
+ * It returns the choice the user makes when logged in.
+ */
 
 std::size_t getChoice()
 {
@@ -286,6 +392,15 @@ std::size_t getChoice()
 
     return choice;
 }
+
+/*
+ * @changePassword()
+ *
+ * This function changes users password after the
+ * account is created.
+ *
+ * Validated by exception class in setter function.
+ */
 
 void changePassword(std::vector<Account> &accounts)
 {
@@ -298,24 +413,41 @@ void changePassword(std::vector<Account> &accounts)
 
     for (auto &account : accounts)
     {
-        if (tempEmail == account.getEmail())
+        try
         {
-            std::cout
-            << "Account found!\n"
-            << "Reset your password: ";
+            if (tempEmail == account.getEmail())
+            {
+                std::cout
+                        << "Account found!\n"
+                        << "Reset your password: ";
 
-            std::string newPassword{};
-            getline(std::cin, newPassword);
+                std::string newPassword{};
+                getline(std::cin, newPassword);
 
-            account.setPassword(newPassword);
-            std::cout << "New password set!\n\n";
+                //validated in setter function
+                account.setPassword(newPassword);
+                std::cout << "New password set!\n\n";
+            }
+            else
+            {
+                std::cerr << "Account not found!\n\n";
+            }
         }
-        else
+        catch (Account::InvalidAccount)
         {
-            std::cerr << "Account not found!\n\n";
+            std::cerr << "Password error!\n\n";
         }
     }
 }
+
+/*
+ * @changeDisplayName
+ *
+ * This function changes the users display name
+ * after the account is created.
+ *
+ * Validated by exception class in setter function.
+ */
 
 void changeDisplayName(std::vector<Account> &accounts)
 {
@@ -331,28 +463,44 @@ void changeDisplayName(std::vector<Account> &accounts)
     std::cout << "Password: ";
     getline(std::cin, tempPass);
 
+    try
+    {
     for (auto &account : accounts)
     {
         bool accountFound = tempName == account.getDisplayName() &&
-                              tempPass == account.getPassword();
+                            tempPass == account.getPassword();
         if (accountFound)
         {
             std::cout
-            << "Account found!\n"
-            << "Change your display name: ";
+                    << "Account found!\n"
+                    << "Change your display name: ";
             getline(std::cin, tempName);
 
             std::cout << '\n';
 
             account.setDisplayName(tempName);
-            std::cout << "New display name set!\n";
+            std::cout << "New display name set!\n\n";
         }
         else
         {
-            std::cerr << "Invalid username or password!\n";
+            std::cerr << "Invalid username or password!\n\n";
         }
     }
+    }
+    catch (Account::InvalidAccount)
+    {
+        std::cerr << "Display name error!\n\n";
+    }
+
+
 }
+
+/*
+ * @logout()
+ *
+ * This function confirms the users request
+ * to logout.
+ */
 
 void logout(bool &loggedIn, std::size_t &choice_menu2)
 {
