@@ -11,7 +11,8 @@ Account::Account(std::string mail, std::string pass, std::string DOB)
 :
 email(std::move(mail)),
 password(std::move(pass)),
-dateOfBirth(std::move(DOB))
+dateOfBirth(std::move(DOB)),
+accountCreated(false)
 {
     bool invalidAccount = InvalidEmail() || InvalidPassword() || InvalidDOB();
 
@@ -44,35 +45,26 @@ const std::string &Account::getDisplayName() const
     return displayName;
 }
 
-const std::string &Account::getDateOfBirth() const
-{
-    return dateOfBirth;
-}
-
 int Account::getObjectCount()
 {
     return objectCount;
-}
-
-bool Account::isAccountCreated() const
-{
-    return accountCreated;
 }
 
 //setters
 
 void Account::setDisplayName(const std::string &name)
 {
+    std::string currentName = this->displayName;
+
     auto validCharacter = [](const char &c) { return std::isalpha(c) || std::isdigit(c); };
+
+    Account::displayName = name;
 
     for (const char &c : name)
     {
-        if (validCharacter(c))
+        if (!validCharacter(c))
         {
-            Account::displayName = name;
-        }
-        else
-        {
+            Account::displayName = currentName;
             throw InvalidAccount();
         }
     }
@@ -80,7 +72,19 @@ void Account::setDisplayName(const std::string &name)
 
 void Account::setPassword(const std::string &pass)
 {
+    const std::string currentPassword = this->password;
+
+    //new password through setter
     Account::password = pass;
+
+    //testing new password
+    bool invalidPassword = InvalidPassword();
+
+    if (invalidPassword)
+    {
+        Account::password = currentPassword;
+        throw InvalidAccount();
+    }
 }
 
 //other
@@ -90,7 +94,7 @@ void Account::greeting() const
     std::cout << "Welcome to RuneScape!\n";
 }
 
-//validators
+//validation
 
 //validate email
 bool Account::InvalidEmail()
