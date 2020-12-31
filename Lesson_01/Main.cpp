@@ -491,8 +491,6 @@ void changeDisplayName(std::vector<Account> &accounts)
     {
         std::cerr << "Display name error!\n\n";
     }
-
-
 }
 
 /*
