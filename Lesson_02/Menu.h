@@ -11,7 +11,7 @@
  * is to be inherited by a MainMenu class,
  * a LoginMenu class, and BillingMenu class.
  *
- * It's invariant is established by validating the login.
+ * Its invariant is established by validating the login.
  * If accounts is empty or there is no account match
  * then an exception is thrown.
  */
