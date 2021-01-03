@@ -18,14 +18,11 @@
 class Menu
 {
 private:
-    /* member variable*/
     std::vector<Accounts> accounts;
 
 public:
-    /* default constructor */
     Menu();
 
-    /* constructor that takes a vector of Accounts as its argument */
     explicit Menu(std::vector<Accounts> accounts);
 
     /*
