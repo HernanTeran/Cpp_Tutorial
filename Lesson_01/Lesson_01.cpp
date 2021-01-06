@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 
+//show intro classes instead
+
 /*
 * What are the C++ data types?
 * ----------------------------
@@ -200,7 +202,6 @@ int main()
     {
         isDead = true;
     }
-
 
     if (isDead)
     {
