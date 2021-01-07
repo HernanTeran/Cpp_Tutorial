@@ -2,7 +2,18 @@
 #include <vector>
 #include <string>
 
-//show intro classes instead
+/*
+* graham cracker crust
+* 910g cream cheese
+* 200g sugar
+* 160g sour cream
+* 1 1/2 teaspoons vanilla extract
+* 1/8 teaspoons salt
+* 4 large eggs
+* pan
+* mixing bowl
+* oven
+*/
 
 /*
 * What are the C++ data types?
