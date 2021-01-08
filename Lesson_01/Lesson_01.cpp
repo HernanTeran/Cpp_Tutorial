@@ -223,5 +223,17 @@ int main()
         std::cout << "Still alive...\n";
     }
     
+    //regex
+    std::vector<std::string> zipcodes{ "TX77070", "TH", "YU 45422-0923" };
+
+	std::regex pat{ R"(\w{2}\s*\d{5}(-\d{4})?)" };
+	
+	std::smatch matches;
+
+	bool found = std::regex_search(zipcodes.at(1), matches, pat);
+	
+	if (found) { std::cout << "found\n"; }
+	else { std::cout << "not found\n"; }
+    
     return 0;
 }
