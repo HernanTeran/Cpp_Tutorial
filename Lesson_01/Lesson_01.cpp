@@ -2,17 +2,31 @@
 #include <vector>
 #include <string>
 
+
 /*
-* graham cracker crust
-* 910g cream cheese
-* 200g sugar
-* 160g sour cream
-* 1 1/2 teaspoons vanilla extract
-* 1/8 teaspoons salt
-* 4 large eggs
-* pan
-* mixing bowl
-* oven
+* ideas
+* 
+* 1. gas station
+* 2. baking something
+* 3. human
+* 4. runescape account
+* 5. basketball
+* 6. glucose meter - glucometer
+*/
+
+/*
+* graham cracker crust -class
+* 910g cream cheese-int
+* 200g sugar-int
+* 160g sour cream-int
+* 7.5g (1.5 teaspoons) vanilla extract -double
+* 0.5g (1/8) teaspoons salt
+* 4 large eggs - vector of 12 eggs
+* mixing bowl-class
+* oven-class
+* 
+* 
+* menu - add ingredients, 
 */
 
 /*
