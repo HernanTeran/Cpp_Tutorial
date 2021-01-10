@@ -6,7 +6,6 @@ private:
 	int white_sugar_cups{ 0 };
 
 	Sugar() = default;
-
 	int convert_to_grams();
 
 public:
@@ -15,4 +14,3 @@ public:
 		white_sugar_cups = convert_to_grams();
 	}
 };
-
