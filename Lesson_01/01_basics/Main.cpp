@@ -1,6 +1,12 @@
 #include <iostream>
+#include <vector>
+#include "CheeseCake.h"
 #include "CreamCheese.h"
 #include "Sugar.h"
+#include "SourCream.h"
+#include "VanillaExtract.h"
+#include "Salt.h"
+#include "Egg.h"
 
 /*
 *			++++++++       +          +
@@ -19,6 +25,9 @@ T getInput(T variable)
 
 int main()
 {
+
+	
+	
 	
 
 	return 0;
