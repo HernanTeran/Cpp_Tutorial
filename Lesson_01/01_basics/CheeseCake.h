@@ -1,36 +1,29 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <vector>
-#include <map>
-#include "CreamCheese.h"
-#include "Sugar.h"
-#include "SourCream.h"
-#include "VanillaExtract.h"
-#include "Salt.h"
-#include "Egg.h"
 
 // header file ( .h )
 // class declarations
 // private/public are called access specifiers
+
 class CheeseCake
 {
-private:
-	// implementation
+private: // implementation
 
 	// data members
-	CreamCheese cream_cheese;
-	Sugar white_sugar;
-	SourCream sour_cream;
-	VanillaExtract vanilla_extract;
-	Salt salt;
-	std::vector<Egg> eggs;
-
+	int cream_cheese{ 0 };
+	double white_sugar{ 0 };
+	double sour_cream{ 0 };
+	double vanilla_extract{ 0 };
+	double salt{ 0 };
+	int eggs{ 0 };
+	std::string crust_type;
 	
-public:
-	// interface
+public: // interface
+
 	// constructor
 	CheeseCake() = delete;
 
+	// destructor
 	~CheeseCake() { std::cout << "Object has been destroyed by destructor.\n"; }
 };
