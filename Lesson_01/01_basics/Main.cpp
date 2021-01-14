@@ -2,11 +2,6 @@
 #include <vector>
 #include "CheeseCake.h"
 
-using std::cout;
-using std::cin;
-using std::string;
-using std::vector;
-
 /*
 *			++++++++       +          +
 *			+              +          +
@@ -18,7 +13,7 @@ using std::vector;
 template <class T>
 T getInput(T variable)
 {
-	cin >> variable;
+	std::cin >> variable;
 	return variable;
 }
 
