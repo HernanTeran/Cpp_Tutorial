@@ -1,6 +1,4 @@
 #include "CheeseCake.h"
-using std::string;
-using std::cout;
 
 // source code file ( .cpp )
 // class definitions
@@ -11,7 +9,7 @@ CheeseCake::CheeseCake(int c_cheese,
 					   double v_extract,
 					   double salt_,
 					   int n_eggs,
-					   string crust)
+					   std::string crust)
 					   :
 					   cream_cheese(c_cheese),
 					   white_sugar(w_sugar),
@@ -21,5 +19,5 @@ CheeseCake::CheeseCake(int c_cheese,
 					   n_of_eggs(n_eggs),
 					   crust_type(crust)
 {
-	cout << "Object has been created.\n";
+	std::cout << "Object has been created.\n";
 }
