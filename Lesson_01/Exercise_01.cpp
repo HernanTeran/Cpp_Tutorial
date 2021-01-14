@@ -1,41 +1,46 @@
 #include <iostream>
 #include <string>
 
-void examine(const std::string&);
-
 int main()
 {
-    std::string goblin = "Goblin";
-    examine(goblin);
+	std::cout
+		<< "About Me\n"
+		<< "--------\n"
+		<< "1. Full name\n"
+		<< "2. 1 hobby\n"
+		<< "3. Age\n"
+		<< "4. First time programming? (y/n)\n"
+		<< "5. Current temperature (use double)\n\n";
 
-    std::string hillGiant = "Hill Giant";
-    examine(hillGiant);
+	std::string first_name,
+				last_name,
+				my_hobby;
 
-    std::string lesserDemon = "Lesser Demon";
-    examine(lesserDemon);
+	getline(std::cin, first_name);
+	getline(std::cin, last_name);
+	getline(std::cin, my_hobby);
 
-    std::string greaterDemon = "Greater Demon";
-    examine(greaterDemon);
-    
-    return 0;
-}
+	std::string full_name{ first_name + " " + last_name };
 
-void examine(const std::string& npc)
-{
-    if (npc == "Goblin")
-    {
-        std::cout << "An ugly green creature.\n";
-    }
-    else if (npc == "Hill Giant")
-    {
-        std::cout << "A very large foe.\n";
-    }
-    else if (npc == "Lesser Demon")
-    {
-        std::cout << "Lesser, but still pretty big.\n";
-    }
-    else
-    {
-        std::cout << "Only 3 NPCs exist at the moment.\n";
-    }
+	int my_age{ 0 };
+	std::cin >> my_age;
+
+	std::cin.ignore();
+
+	char first_program{ '0' };
+	std::cin.get(first_program);
+
+	double current_temp{ 0 };
+	std::cin >> current_temp;
+
+	std::cout
+		<< "About Me\n"
+		<< "--------\n"
+		<< "1. " << full_name << '\n'
+		<< "2. " << my_hobby << '\n'
+		<< "3. " << my_age << '\n'
+		<< "4. " << first_program << '\n'
+		<< "5. " << current_temp << '\n';
+		
+	return 0;
 }
