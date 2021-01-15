@@ -21,3 +21,8 @@ CheeseCake::CheeseCake(int c_cheese,
 {
 	std::cout << "Object has been created.\n";
 }
+
+void CheeseCake::examine()
+{
+	std::cout << "A delicious cheesecake.\n";
+}
