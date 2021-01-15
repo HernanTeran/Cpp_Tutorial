@@ -13,8 +13,8 @@ int main()
 		<< "5. Current temperature (use double)\n\n";
 
 	std::string first_name,
-				last_name,
-				my_hobby;
+		    last_name,
+		    my_hobby;
 
 	getline(std::cin, first_name);
 	getline(std::cin, last_name);
