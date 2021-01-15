@@ -31,6 +31,8 @@ public: // interface
 		       double salt_, 
 		       int n_of_eggs, 
 		       string crust);
+	
+	void examine();
 
 	// destructor
 	~CheeseCake() { std::cout << "Object has been destroyed by destructor.\n"; }
