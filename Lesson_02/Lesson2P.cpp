@@ -1,190 +1,122 @@
+// Hernan Teran 1/17/2021
+
 #include <iostream>
+#include <string>
+#include <cmath> // [ 1 ]
+#include <iomanip>
 
-/*
- * Lesson 02
- *
- * 1. using booleans
- * 2. if/else
- * 3. else if
- * 4. inline statement
- * 5. logical operators/nested if/else statements
- * 6. switch statements
- */
-
-bool ageReq1(int, int); //basic if statement
-void ageReq2(int, int); //if/else if/else statement
-bool inlineAgeReq(int, int);
-void pay2Play_1(bool, bool); //nested if statements
-bool pay2Play_2(bool, bool); //inlined logical operator statement
-char getInput(bool);
-bool switchPay2Play(char); //switch statement
+// [ 2 ]
+std::string get_SI_Unit();
+char get_SI_Abbrev();
+double getInitialPos();
+double getFinalPos();
+double calculateDisplacement(double, double);
+void displayResult(double, std::string, char);
+int raiseToPower();
+void formatResult(double, std::string, char);
 
 int main()
 {
-    const int rsAge = 13;
+	// [ 3 ]
+	std::string SI_Unit;
+	SI_Unit = get_SI_Unit();
 
-    int yourAge;
+	char abbrev{ 0 };
+	abbrev = get_SI_Abbrev();
 
-    std::cin >> yourAge;
+	double initial_pos{ 0 };
+	initial_pos = getInitialPos();
 
-    bool isOver13;
+	double final_pos{ 0 };
+	final_pos = getFinalPos();
 
-    isOver13 = yourAge >= rsAge;
+	double displacement{ 0 };
+	displacement = calculateDisplacement(initial_pos, final_pos);
+	displayResult(displacement, SI_Unit, abbrev);
 
-    //true is 1, false is 0
-    std::cout << isOver13 << '\n';
+	int power{ 0 };
+	power = raiseToPower();
 
-    isOver13 = ageReq1(yourAge, rsAge);
+	// [ 7 ]
+	displacement = pow(displacement, power);
+	displayResult(displacement, SI_Unit, abbrev);
 
-    std::cout << isOver13 << '\n';
+	displacement = ceil(displacement);
+	displayResult(displacement, SI_Unit, abbrev);
 
-    //void so doesn't need to be assigned
-    ageReq2(yourAge, rsAge);
+	displacement = sqrt(displacement);
+	displayResult(displacement, SI_Unit, abbrev);
 
-    isOver13 = inlineAgeReq(yourAge, rsAge);
+	// [ 4 ]
+	formatResult(displacement, SI_Unit, abbrev);
 
-    std::cout << "**********************************\n";
-
-    bool isMember = false;
-
-    pay2Play_1(isMember, isOver13);
-
-    int x;
-    std::cin >> x;
-
-    int y = x > 5 ? x : 5;
-    std::cout << "y = " << y << '\n';
-
-    std::cout << "**********************************\n";
-
-    char input = getInput(isOver13);
-    //assigning the result of the function to isMember
-    isMember = switchPay2Play(input);
-
-    return 0;
+	// [ 8 ] - link time errors
+	return 0;
 }
 
-bool ageReq1(int yourAge, const int rsAge)
+// [ 5 ]
+std::string get_SI_Unit()
 {
-    if (yourAge >= rsAge)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+	std::cout << "What is the SI unit for displacement?\n";
+
+	std::string SI_Unit;
+	getline(std::cin, SI_Unit);
+
+	return SI_Unit;
 }
 
-bool inlineAgeReq(int yourAge, const int rsAge)
+char get_SI_Abbrev()
 {
-    return yourAge >= rsAge;
+	std::cout << "Enter SI unit abbreviation.\n";
+
+	char SI_Abbrev{ '0' };
+	std::cin.get(SI_Abbrev);
+
+	return SI_Abbrev;
 }
 
-void ageReq2(int yourAge, const int rsAge)
+double getInitialPos()
 {
-    if (yourAge >= rsAge)
-    {
-        std::cout << "Welcome to Runescape!\n";
-    }
-    else if (yourAge == 12)
-    {
-        std::cout << "One more year and then you can play!\n";
-    }
-    else
-    {
-        std::cout << "You're not old enough to play yet!\n";
-    }
+	std::cout << "Enter your initial position.\n";
+
+	double initial_pos{ 0 };
+	std::cin >> initial_pos;
+
+	return initial_pos;
 }
 
-void pay2Play_1(bool isMember, bool isOver13)
+double getFinalPos()
 {
-    char promptInput;
+	std::cout << "Enter your final position.\n";
 
-    if (!isMember && !isOver13)
-    {
-        std::cout << "You are not old enough to play yet!\n";
-    }
-    //if isMember equals false
-    //isMember != true
-    else if (!isMember && isOver13)
-    {
-        std::cout
-        << "Would you like to become a member?\n"
-        << "Enter (Y or N)\n";
+	double final_pos{ 0 };
+	std::cin >> final_pos;
 
-        //use cin.ignore() to clear buffer of extra '\n' characters
-        std::cin.ignore();
-        //use cin.get(varName) for char input
-        std::cin.get(promptInput);
-
-        //nested if/else statement using the OR logical operator
-        if (promptInput == 'Y')
-        {
-            //updating isMember's value to true
-            isMember = true;
-            std::cout << "You are now a member! Enjoy!\n";
-        }
-        else if (promptInput == 'N')
-        {
-            //isMember remains false
-            std::cout << "Hopefully you become a member soon!\n";
-        }
-        else
-        {
-            //isMember remains false
-            std::cout << "Input was suppose to be Y or N!\n";
-        }
-    }
-    else
-    {
-        //isMember was already true
-        std::cout << "You are already a member!\n";
-    }
+	return final_pos;
 }
 
-bool pay2Play_2(bool isMember, bool isOver13)
+double calculateDisplacement(double initial_pos, double final_pos)
 {
-    return isMember && isOver13;
+	return final_pos - initial_pos;
 }
 
-char getInput(bool isOver13)
+void displayResult(double result, std::string SI_Unit, char abbrev)
 {
-    std::cout
-    << "Would you like to become a member?\n"
-    << "Enter (Y or N)\n";
-
-    char promptInput;
-
-    std::cin.ignore();
-    std::cin.get(promptInput);
-
-    if ((promptInput == 'Y' || promptInput == 'y') || (promptInput == 'N' || promptInput == 'n') && isOver13)
-    {
-        return promptInput;
-    }
-   return promptInput;
+	std::cout << "Result: " << result << " " << SI_Unit << " (" << abbrev << ")\n";
 }
 
-bool switchPay2Play(char input)
+int raiseToPower()
 {
-    char promptInput = input;
+	std::cout << "To what power do you want to raise the result?\n";
 
-    bool isMember = false;
+	int power{ 0 };
+	std::cin >> power;
 
-    switch (promptInput)
-    {
-        case 'Y':
-        case 'y':
-            isMember = true;
-            std::cout << "You are now a member! Enjoy!\n";
-            break;
-        case 'N':
-        case 'n':
-            std::cout << "Hopefully you become a member soon!\n";
-            break;
-        default:
-            std::cout << "Input was suppose to be Y or N!\n";
-    }
-    return isMember;
+	return power;
+}
+
+void formatResult(double result, std::string SI_Unit, char abbrev)
+{
+	std::cout << std::fixed << std::setprecision(2) // [ 7 ]
+		      << "Result: " << result << " " << SI_Unit << " (" << abbrev << ")\n";
 }
