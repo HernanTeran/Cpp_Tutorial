@@ -10,7 +10,7 @@ std::string get_SI_Unit();
 char get_SI_Abbrev();
 double getInitialPos();
 double getFinalPos();
-double calculateDisplacement(double, double);
+double calculate_displacement(double, double);
 void displayResult(double, std::string, char);
 int raiseToPower();
 void formatResult(double, std::string, char);
@@ -31,7 +31,7 @@ int main()
 	final_pos = getFinalPos();
 
 	double displacement{ 0 };
-	displacement = calculateDisplacement(initial_pos, final_pos);
+	displacement = calculate_displacement(initial_pos, final_pos);
 	displayResult(displacement, SI_Unit, abbrev);
 
 	int power{ 0 };
@@ -50,7 +50,13 @@ int main()
 	// [ 4 ]
 	formatResult(displacement, SI_Unit, abbrev);
 
-	// [ 8 ] - link time errors
+	// [ 8 ]
+	std::cout
+		<< "Size of: " << sizeof(displacement) << '\n'
+		<< "Type: " << typeid(displacement).name();
+
+	// [ 9 ] - type safety
+	// [ 10 ] - link time errors
 	return 0;
 }
 
@@ -95,7 +101,7 @@ double getFinalPos()
 	return final_pos;
 }
 
-double calculateDisplacement(double initial_pos, double final_pos)
+double calculate_displacement(double initial_pos, double final_pos)
 {
 	return final_pos - initial_pos;
 }
@@ -117,6 +123,6 @@ int raiseToPower()
 
 void formatResult(double result, std::string SI_Unit, char abbrev)
 {
-	std::cout << std::fixed << std::setprecision(2) // [ 7 ]
-		      << "Result: " << result << " " << SI_Unit << " (" << abbrev << ")\n";
+	std::cout << std::fixed << std::setprecision(2); // [ 7 ]
+	displayResult(result, SI_Unit, abbrev);
 }
