@@ -21,7 +21,7 @@ int main()
 	std::string SI_Unit;
 	SI_Unit = get_SI_Unit();
 
-	char abbrev{ 0 };
+	char abbrev{ '0' };
 	abbrev = get_SI_Abbrev();
 
 	double initial_pos{ 0 };
