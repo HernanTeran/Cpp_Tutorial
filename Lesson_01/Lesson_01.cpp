@@ -28,7 +28,7 @@
 
 // [ 5 ]
 void displayMenu();
-void getInput();
+void displayResult();
 void errorMessage();
 
 // [ 3 ]
@@ -49,7 +49,7 @@ int main()
 
 	// [ 7 ]
 	displayMenu();
-	getInput();
+	displayResult();
 	errorMessage();
 
 	// [ 8 ] - compile time errors
@@ -68,9 +68,9 @@ void displayMenu()
 		<< "3. minutes to seconds\n";
 }
 
-void getInput()
+void displayResult()
 {
-	std::cout << "{Enter a value}\n";
+	std::cout << "Result: " << "...\n";
 }
 
 void errorMessage()
