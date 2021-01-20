@@ -38,12 +38,16 @@ int main()
 	power = raiseToPower();
 
 	// [ 7 ]
+	
+	// raise to power
 	displacement = pow(displacement, power);
 	displayResult(displacement, SI_Unit, abbrev);
 
+	// rounding
 	displacement = ceil(displacement);
 	displayResult(displacement, SI_Unit, abbrev);
-
+        
+	// square root
 	displacement = sqrt(displacement);
 	displayResult(displacement, SI_Unit, abbrev);
 
@@ -53,7 +57,7 @@ int main()
 	// [ 8 ]
 	std::cout
 		<< "Size of: " << sizeof(displacement) << '\n'
-		<< "Type: " << typeid(displacement).name();
+		<< "Type: " << typeid(displacement).name() << '\n';
 
 	// [ 9 ] - type safety
 	// [ 10 ] - link time errors
