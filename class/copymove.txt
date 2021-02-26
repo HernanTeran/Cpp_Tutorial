@@ -1,0 +1,41 @@
+define copy operations, move operations and destructor together
+
+Copy operations provide equivalence and independence
+
+A(const A& obj) : b{ obj.b }, c{ obj.c }
+	{
+      std::uninitialized_copy();
+	} 
+
+Matrix& operator=(const Matrix& obj); // copy assignment
+{
+    std::copy();
+    return *this;
+}
+
+Matrix(Matrix&& obj) noexcept; // move constructor
+    :use member list initialization
+{
+    set obj values = 0 or nullptr
+    obj.val = 0;
+    obj.ptr = nullptr;
+}
+
+Matrix& operator=(const Matrix&& obj) noexcept; // move assignment
+// define a template swap function
+{
+    swap(val, obj.val);
+    return *this;
+}
+
+template<typename T>
+void swap(T& a, T& b)
+{
+    T tmp = std::move(a);
+    a = std::move(b);
+    b = std::move(tmp);
+}
+
+if a constructor is defined a default constructor will not be generated
+if any of the copy, move operations or destructor is defined then the ones that aren't won't be generated
+=default does not initialize members
