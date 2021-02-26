@@ -1,0 +1,9 @@
+- a constructor builds a class object from the bottom up
+- first the constructor invokes its base class constructors
+- then it invokes the member constructors
+- then it executes its own body
+
+- a destructor tears down an object in reverse order and it is invoked implicitly
+- first the destructor executes its own body
+- then it invokes the member destructors
+- then it invokes its base class destructors
